@@ -43,7 +43,7 @@ router.patch('/:id', function(req, res){
         }
 
         const data = fs.writeFileSync('users.json', JSON.stringify(users));
-    } catch {
+    } catch (err) {
         res.status(200).json({message: "edited the object"});
     }
 });
