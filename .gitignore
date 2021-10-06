@@ -1,0 +1,4 @@
+./node_modules
+./myHiddenConfig.js
+.env
+node_modules

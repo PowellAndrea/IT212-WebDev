@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Andrea Powell",
+        "age": 39,
+        "currentGame" : "My Ponies"
+    },
+    {
+        "name": "Patti Manor",
+        "age": 22,
+        "currentGame" : "Your Ponies"
+    }
+]
