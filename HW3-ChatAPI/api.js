@@ -27,7 +27,25 @@ router.post('/', function(req, res){
 
 // Update
 router.patch('/:id', function(req, res){
-    res.status(200).json({message: "edited the object"});
+    try{
+        console.log("Object being patched is: ", req.params.id, req.body);
+        const rawdata = fs.readFileSync('users.json');
+
+        var id = req.params.id;
+        var rawBody = req.body;
+
+        if (rawBody.name != null){
+            users[id].name = rawBody.name;
+        }
+
+        if (rawBody.age != null){
+            users[id].age = rawBody.age;
+        }
+
+        const data = fs.writeFileSync('users.json', JSON.stringify(users));
+    } catch {
+        res.status(200).json({message: "edited the object"});
+    }
 });
 
 // Delete
