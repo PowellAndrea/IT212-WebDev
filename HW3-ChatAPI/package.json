@@ -4,7 +4,7 @@
   "description": "a test api",
   "main": "index.js",
   "scripts": {
-    "serve": "nodemon index.js"
+    "chat": "nodemon index.js"
   },
   "author": "Andrea Powell",
   "license": "ISC",

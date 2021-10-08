@@ -1,0 +1,12 @@
+[
+    {
+        "id" : 1,
+        "user"  : 1,
+        "message"   : "This is the 1st message in channel three."
+    },
+    {
+        "id"    : 2,
+        "user"  : 1,
+        "message"   : "This is the 2nd message in channel three."
+    }
+]

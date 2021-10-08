@@ -1,0 +1,9 @@
+[
+    {
+        "message" : "I spent way too much time thinking about user interface and webpages, then went down the rabbit hole of exporting html so I could embed hyperlinks.  Then I decided to go with low budget console messages, because that was good enough :)",
+		"Work with Users" : "http://localhost:3000/users",
+		"Work with Channels" : "http://localhost:3000/channels",
+		"ps: " : "I have now learned I can embed URLs in json.  So there you go, useful rabbit hole afterall."
+	}
+]
+
