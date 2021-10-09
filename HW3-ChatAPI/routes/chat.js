@@ -1,50 +1,40 @@
 //  andrea.powell@student.chehalis.edu     * 10/8/2021
 //  IT-212 Web Dev  * HW3-Chat API
+//
+//  Main Chat API
 
 const { response } = require('express');
 var express = require('express');
 var router  = express.Router();
 var fs      = require('fs');
 
-// --------------------- Main Chat App Endpoints
 
-// Read * Chat Index
+// Read * Chat Welcome Page (awkward)
 router.get('/', function(req, res) {
     try{
         const rawdata = fs.readFileSync('page_welcome.json');
-        var channels = JSON.parse(rawdata);
-        console.log(channels);
-        res.status(200).json(channels);
+        var welcome = JSON.parse(rawdata);
+        console.log("Show the welcome message");
+        res.status(200).json(welcome);
       
     } catch(err){
         res.status(500).json({message: err.message});
     }
 });
 
-router.get('/user1', function(req,res){
-    try{
-        const rawdata = fs.readFileSync('data_users.json');
-        var channels = JSON.parse(rawdata);
-        console.log(channels);
-        res.status(200).json(channels);
-      
-    } catch(err){
-        res.status(500).json({message: err.message});
-    }  
-});
 
 // Create
 router.post('/', function(req, res){
-    res.status(201).json({message: "Changes are not allowed here."});
+    res.status(201).json({message: "Space reserved for system settings.  Users: http://localhost:3000/users, Channels: http://localhost:3000/channels"});
 });
 
 // Update
-router.patch('/:id', function(req, res){
-    res.status(200).json({message: "Nothing to update"});
+router.patch('/', function(req, res){
+    res.status(201).json({message: "Space reserved for system settings.  Users: http://localhost:3000/users, Channels: http://localhost:3000/channels"});
 });
 
 // Delete
-router.delete('/:id', function(req, res){
+router.delete('/', function(req, res){
     res.status(200).json({message: "You cannot delete this, bad dog!"});
 });
 
