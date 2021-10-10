@@ -1,15 +1,15 @@
-//  andrea.powell@student.chehalis.edu  *   10/8/2021
-//  IT-212 Web Dev  * HW3-Chat API
+//  andrea.powell@student.chehalis.edu     *    10/8/2021
+//  IT-212 Web Dev  * HW3-Chat API (pre-to-be backend for angular app)
 //
-//  Index.js
+// --------------------- Message Endpoints
 
 var express     = require('express');
 var morgan      = require('morgan');
 var app         = express();
-//var apiRoutes   = require('./routes/api');
 var chat        = require('./routes/chat');
 var channels    = require('./routes/channels');
-var users       = require('./routes/users');
+var messages    = require('./routes/messages');
+//var users       = require('./routes/users');      // Hooray for scope creep.
 
 
 app.use(express.urlencoded({
@@ -19,9 +19,9 @@ app.use(express.urlencoded({
 app.use(express.json());
 app.use(morgan('combined'));
 app.use('/', chat);
-//app.use('/chat', chat);
-app.use('/users', users);
+//app.use('/users', users);
 app.use('/channels', channels );
+app.use('/messages', messages );
 
 var server = app.listen(3000, function () {
     var host = server.address().address;

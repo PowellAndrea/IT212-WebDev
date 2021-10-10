@@ -1,9 +1,10 @@
-//  andrea.powell@student.chehalis.edu     * 10/8/2021
-//  IT-212 Web Dev  * HW3-Chat API
-// pre-to-be backend for angular app
+//  andrea.powell@student.chehalis.edu     *    10/8/2021
+//  IT-212 Web Dev  * HW3-Chat API (pre-to-be backend for angular app)
+//  
+//  Not enabled in main app - can I say out of scope?
 //
 //  todo:
-//      Delete broken
+//      Delete needs to be updated to preserve ID
 //
 // --------------------- User Endpoints
 
@@ -86,10 +87,8 @@ router.patch('/:id', function(req, res) {
             users[id].defaultChannel = rawBody.defaultChannel;
         }
 
-        // save (write) the data back to the file
         const data = fs.writeFileSync('data_users.json', JSON.stringify(users));
 
-        // return the data to the user
         res.status(200).json(users[id]);
     } catch (err) {
         res.status(500).json({ message: err.message });

@@ -1,16 +1,21 @@
-//  andrea.powell@student.chehalis.edu     * 10/8/2021
-//  IT-212 Web Dev  * HW3-Chat API
+//  ----- Channels.js -----
+
+//  andrea.powell@student.chehalis.edu     *    10/8/2021
+//  IT-212 Web Dev  * HW3-Chat API (pre-to-be backend for angular app)
+//  
+//  10/8/2021 - AP: Delete function removes the message body but leaves a sub to ensure unique numbering based on length of input
+//  Otherwise delete would need to reorder, or use something besides lenhth as an id.  Leaving it was easier.
 //
 //  todo:
-//      fix deletes
-//      create channel errors
-//  ----- Channels.js -----
+//      The create function does not create a new text file for messages.
+//
+// --------------------- Channel / Room Endpoints
 
 var express = require('express');
 var router  = express.Router();
 var fs      = require('fs');
 
-// get the channel list
+// get the channel list - ok
 router.get('/', function(req, res) {
     try{
         console.log("Showing channel list");
@@ -24,73 +29,20 @@ router.get('/', function(req, res) {
     }
 });
 
-//  get all messages from a channel
-router.get('/:channel', function(req,res){
+//  Get Channel Details - ok
+router.get('/:id', function(req,res){
     try{
-        var channel = req.params.channel;
-        var fileName = "./CH" + channel + "_messages.json";
-        console.log("opening " + fileName);
-        
-        const rawdata = fs.readFileSync(fileName);
-        var messages = JSON.parse(rawdata);
-        
-        res.status(200).json({messages});
+        const rawdata = fs.readFileSync('./data_channels.json');
+        var channels = JSON.parse(rawdata);
+        console.log(channels[req.params.id]);
+        res.status(200).json(channels[req.params.id]);
+
     } catch(err){
         res.status(500).json({message: err.message});
     }
 });
 
-//  post a new message
-router.post('/:channel', function(req,res){
-    try{
-        var channel = req.params.channel;
-        var fileName = "CH" + channel + "_messages.json";
-        console.log("opening " + fileName);
-        
-        const rawdata = fs.readFileSync(fileName);
-        var messages = JSON.parse(rawdata);
-
-        var rawBody = req.body;
-        console.log("Posted object is: ", rawBody);
-
-        var timestamp = "Created " + Date().toString();
-        var newID = messages.length;
-
-        var newObj = {
-            id: newID,
-            user: null,
-            message: null,
-            timestamp: timestamp 
-        };
-
-        if (rawBody.user != null){
-            newObj.user = rawBody.user;
-        }
-
-        if (rawBody.message != null){
-            newObj.message = rawBody.message;
-        }
-
-        messages.push(newObj);
-
-        const data = fs.writeFileSync(fileName, JSON.stringify(messages));
-        console.log("hello");
-        res.status(200).json(newObj);
-
-    } catch(err){
-        res.status(500).json({message: err.message});
-    }
-})
-
-// delete all messages from a channel
-router.delete('/:id', function(req, res){
-    res.status(200).json({message: "You are unworthy, be gone!"});
-});
-
-
-//  ----- Channel Administration -----
-
-// Create a new Channel
+// Create a new Channel - ok
 router.post('/', function(req, res){
     try{
         console.log("Posted Object is: ", req.body);
@@ -112,6 +64,12 @@ router.post('/', function(req, res){
         if (rawBody.name != null) {newObj.name = rawBody.name};
         if (rawBody.description != null) {newObj.description = rawBody.description};
 
+        //  Need to create a new file to hold the messages.  Something like:
+        // var fileName = "./CH" + id + "_messages.json";
+        // File myFileObject = new File(fileName);
+        // myFileObject.createNewFile();
+        // Then put some square braces in it & close
+
         channels.push(newObj);
         const data = fs.writeFileSync('data_channels.json', JSON.stringify(channels));
         res.status(201).json(newObj);
@@ -121,13 +79,65 @@ router.post('/', function(req, res){
     }
 });
 
+// Update a channel's details - ok
+router.patch('/:id', function(req, res) {
+    try {
+        console.log("Object being patched is: ", req.params.id, req.body);
+        const rawdata = fs.readFileSync('data_channels.json');
+        var channels = JSON.parse(rawdata);
 
-// Edit a channel's details
-router.patch('/:id', function(req, res){
-    res.status(200).json({message: "You do not have the power to edit channels."});
+        var id = req.params.id;
+        var rawBody = req.body;
+
+        var timestamp = "Updated " + Date().toString();
+        var newID     = channels.length;
+        channels[id].lastChange = timestamp;
+
+        if (rawBody.name != null) {
+            channels[id].name = rawBody.name;
+        }
+        
+        if (rawBody.description != null) {
+            channels[id].description = rawBody.description;
+        }
+
+        const data = fs.writeFileSync('data_channels.json', JSON.stringify(channels));
+        res.status(200).json(channels[id]);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 });
 
 // Delete a channel
+//  ID retained to perserve uniqueness of IDs
+//  todo:  The file representing the messages in the channel is retained and still accessible.
+router.delete('/:id', function(req, res) {
+    try{
+        console.log("Object being deleted is: ", req.params.id, req.body);
+        var id = req.params.id;
+        const rawdata = fs.readFileSync('data_channels.json');
+        var channels = JSON.parse(rawdata);
 
+        // Need to delete the associated message file.  Something link:
+        // var fileName = "./CH" + id + "_messages.json";
+        // File myFileObject = new File(fileName);
+        //  myFileObject.delete();
+
+        var timestamp = "Deleted " + Date().toString();
+
+        if (channels[id] != null) {
+            channels[id].name        = "Channel has been removed.";
+            channels[id].description = "Channel deleted";
+            channels[id].lastChange  = "Deleted " + Date().toString();
+
+            const data = fs.writeFileSync('data_channels.json', JSON.stringify(channels));
+            res.status(200).json("deleted channel");
+        }else{
+            res.status(200).json("channel does not exist");
+        }  
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }    
+});
 
 module.exports = router;

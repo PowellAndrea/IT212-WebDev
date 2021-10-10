@@ -1,7 +1,10 @@
-//  andrea.powell@student.chehalis.edu     * 10/8/2021
-//  IT-212 Web Dev  * HW3-Chat API
+//  andrea.powell@student.chehalis.edu     *    10/8/2021
+//  IT-212 Web Dev  * HW3-Chat API (pre-to-be backend for angular app)
 //
-//  Main Chat API
+//  todo:
+//      Scope reserved for chat application settings.  Not much going on here.
+//
+// --------------------- Chat API Endpoints
 
 const { response } = require('express');
 var express = require('express');

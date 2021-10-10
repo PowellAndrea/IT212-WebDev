@@ -1,12 +1,1 @@
-[
-    {
-        "id" : 1,
-        "user"  : 1,
-        "message"   : "This is the 1st message in channel three."
-    },
-    {
-        "id"    : 2,
-        "user"  : 1,
-        "message"   : "This is the 2nd message in channel three."
-    }
-]
+[{"id":1,"user":1,"message":"This is the 1st message in channel three."},{"id":2,"user":1,"message":"This is the 2nd message in channel three."},{"id":2,"user":null,"message":null,"timestamp":"Created Sat Oct 09 2021 16:26:43 GMT-0700 (Pacific Daylight Time)"},{"id":3,"user":null,"message":"Message has been removed.","timestamp":"Deleted Sat Oct 09 2021 17:38:50 GMT-0700 (Pacific Daylight Time)"},{"id":4,"user":"Joe","message":"This is the 2st message in channel three.","lastChange":"Created Sat Oct 09 2021 17:26:33 GMT-0700 (Pacific Daylight Time)"}]
