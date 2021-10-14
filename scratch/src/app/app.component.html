@@ -1,0 +1,10 @@
+<H1> I am in in the app.component.html</H1>
+<p *ngIf="isLoaded">we are loaded</p>
+
+<p *ngIf="!isLoaded"> we ar not loaded</p>
+
+<button (click)="toggleLoaded()">Toggle Loaded</button>
+
+<ul>
+  <li *ngFor="let item of data">#{{item.channel}}:{{ item.name}} - {{item.message}} {{item.channel}}</li>
+</ul>
