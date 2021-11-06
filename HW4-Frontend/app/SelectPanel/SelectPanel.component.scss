@@ -1,0 +1,7 @@
+.SelectPanel {
+    width: 50%;
+    display: grid;
+    grid-template-columns:auto;
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    }

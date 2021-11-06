@@ -1,0 +1,19 @@
+.TopBar{
+    background-image:image("assets/background.jpg");
+    background-color: antiquewhite;
+    background-repeat: repeat-x;
+    border: 1px;
+    border-color: black;
+}
+
+.btnHome{
+    top:50px;
+    left:90%;
+    position: absolute;
+
+    background-color: chocolate; 
+}
+
+.TopBar.pic{
+    src: "assets/Logo.jpg";
+}
