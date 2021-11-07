@@ -17,7 +17,6 @@ export class TopBarComponent implements OnInit {
   }
 
   goHome(){
-    console.log("set detail panel isDefault = false / ");
     this.route.navigate(['/home']);
   }
 

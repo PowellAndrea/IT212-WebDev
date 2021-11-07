@@ -53,18 +53,17 @@ export class CloneComponent implements OnInit {
 
   constructor(private router: ActivatedRoute, private route: Router) {
     this.id = 0;
-    this.name="";
-    this.info="";
-    this.imagePath="";
+  // // this.name="";
+  //  this.info="";
+  //  this.imagePath="";
   }
 
   ngOnInit() {
-    //this.router.params.subscribe(params => {
-    //});
   }
 
   showDetail(item:any){
-    console.log("buy Me", item);
-    this.route.navigate(['/DetailPanel']);
+    //console.log("buy Me", item);
+    //this.route.navigate(['/item/' + item.id]);
+    this.route.navigate(['/item/' + item.id + '/name/' + item.name + '/info/' + item.info]);
   }
 }
