@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-//import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-DetailPanel',
@@ -8,18 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 
 export class DetailPanelComponent implements OnInit {
-  //@Input() item: any;   // decorator
-  //thingID: number = 0;
-
-  //constructor(private router: ActivatedRoute) { }
-
   constructor() { }
   ngOnInit() {
-
   }
-
-  
-
-
 
 }

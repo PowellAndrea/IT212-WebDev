@@ -1,3 +1,7 @@
+//    andrea.powell@student.centralia.edu  * HW 4 - Clone Class
+//
+//  I would have done this differently and moved the button display out to its own component.  This got gross.
+
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -53,7 +57,7 @@ export class CloneComponent implements OnInit {
 
   constructor(private router: ActivatedRoute, private route: Router) {
     this.id = 0;
-  // // this.name="";
+  //  this.name="";
   //  this.info="";
   //  this.imagePath="";
   }

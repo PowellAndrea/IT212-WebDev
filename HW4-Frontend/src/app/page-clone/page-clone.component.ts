@@ -1,4 +1,8 @@
+//  Probably should have passed this an object somehow - need a service for that?
+//  not pretty
+
 import { Component, OnInit } from '@angular/core';
+
 import { ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
@@ -21,8 +25,10 @@ export class PageCloneComponent implements OnInit {
      console.log(this.name);
      console.log(params.get('name'));
 
+     // So I can display the param.name as a string; and set this.name to a string; but can not set this.name to the param.name /pffftt...
      this.name = "spanky";
-    // this.name = params.get('name');
-    })
+     //this.name = params.get('name');
+
+  })
   }
 }

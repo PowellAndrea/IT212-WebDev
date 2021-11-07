@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'HW4-Frontend';
+  title = 'Clone Me a Pony.';
 }
