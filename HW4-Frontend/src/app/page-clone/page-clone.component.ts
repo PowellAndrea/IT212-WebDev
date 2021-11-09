@@ -13,8 +13,8 @@ import { ActivatedRoute, ParamMap} from '@angular/router';
 export class PageCloneComponent implements OnInit {
   item: any;
 
-  info: string = "nothing to see here";
-  name:string = "bubblegum"
+  info: string | null = "nothing to see here";
+  name:string | null = "bubblegum";    // Typescript:  "string" and "string | null" are two different types.
 
   constructor(private route: ActivatedRoute, router: ActivatedRoute){
    }
@@ -25,9 +25,8 @@ export class PageCloneComponent implements OnInit {
      console.log(this.name);
      console.log(params.get('name'));
 
-     // So I can display the param.name as a string; and set this.name to a string; but can not set this.name to the param.name /pffftt...
-     this.name = "spanky";
-     //this.name = params.get('name');
+     this.name = params.get('name');  // the return type from params.get is "string | null"
+     this.info = params.get('info');
 
   })
   }
