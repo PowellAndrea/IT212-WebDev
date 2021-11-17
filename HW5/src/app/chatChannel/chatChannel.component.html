@@ -1,0 +1,9 @@
+<div class="ChatChannel">
+  <ul>
+    <li *ngFor="let item of items" (click)='getMessages(item)'>
+    {{item}}</li>
+    </ul>
+</div>
+
+<h3>Messages Here</h3>
+<app-chatMessage></app-chatMessage>
