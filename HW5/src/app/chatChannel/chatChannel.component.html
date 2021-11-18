@@ -1,9 +1,7 @@
 <div class="ChatChannel">
   <ul>
-    <li *ngFor="let item of items" (click)='getMessages(item)'>
-    {{item}}</li>
-    </ul>
+    <li *ngFor="let item of items"  ><a routerLink="messages/{{item}}" routerLinkActive="active">{{item}}</a></li>
+  </ul>
 </div>
 
-<h3>Messages Here</h3>
-<app-chatMessage></app-chatMessage>
+

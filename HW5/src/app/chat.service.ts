@@ -9,35 +9,38 @@ import { catchError, retry } from 'rxjs';
   providedIn: 'root'
 })
 
-export class ChatService {
-  static api: string = "http://73.19.65.35:3500/api/channel/";
-  static channel: string = "apowell";
+// Make Observable - when currentChannel changes, update chatMessage component
 
-  channels: string[]=[""]
-  messages: string[]=[""]
-  query: string=""
+
+
+export class ChatService {
+  //static api: string = "http://73.19.65.35:3500/api/channel/";
+  //static channel: string = "apowell";
+  // channels: string[]=[""]
+  //messages: any[]=[""]
+  currentChannel: string = ""
+
+
+
 
 constructor( private http: HttpClient){
 }
 
 getChannels(){    // Get all channel names - returns an array of strings
-  console.log("getChannels: ");
-  // returns an observable with the response object
-  // observables may emit data more than once (allows subscription)
-  // does not make the request until there is a subscription
-  return this.http.get("http://73.19.65.35:3500/api/channel/");
-
+  console.log("svcChat.getChannels: ");
+  return this.http.get("http://73.19.65.35:3500/api/channel");
 }
 
-//  Need to fix this & pass in variables
+//  Need to fix this & pass in channel variable
 getMessages(channel: string ){    // Get all messages by channelName - returns an array of chat messages
-  this.query = "http://73.19.65.35:3500/api/channel/" + channel
-  console.log("getMessages from service: " + this.query)
-  return this.http.get(this.query)
+  this.currentChannel = channel;
+  console.log("svcChat.getMessages " + channel)
+  return this.http.get("http://73.19.65.35:3500/api/channel/" + channel)
 }
 
-newMessage(){   //Create a new message in channelName - returns a single message (the created message)
-  return this.http.post("http://73.19.65.35:3500/api/channel/:apowell",{"username": "string", "message": "string"});
+newMessage(body:any){   //Create a new message in channelName - returns a single message (the created message)
+  console.log("svcChat.newMessages: ")
+  return this.http.post("http://73.19.65.35:3500/api/channel/:apowell",body);
 
 }
 

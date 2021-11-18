@@ -10,39 +10,36 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 export class ChatMessageComponent implements OnInit {
 
   @Input()
-    messages:any
-    id:any
-
+    messages: any
+    channels: any
 
   constructor(
     private route:ActivatedRoute,
     private router: Router,
-    private chatSvc: ChatService) {
-      //this.chatSvc.getMessages(this.currentChannel).subscribe(data => this.messages = data)
-
-     }
-
-    currentChannel = "toast"
-
-     body = {
-      "username": "andrea",
-      "message": "",
-      "id": "gimme something random",
-      "created_on": Date,
-      "updated_on": null
+    private chatSvc: ChatService)
+    {
+      console.log("chatMessage constructor")
+      this.chatSvc.getMessages("toast").subscribe(data => this.messages = data)  // getChannels - returns array of strings
     }
 
-
-
+// Needs to get notified when channel changes
+// do something with the current channel
 
     ngOnInit() {
     }
 
-    newMessage(body: any){
-    //return this.http.post("http://73.19.65.35:3500/api/channel/:apowell",{"username": "string", "message": "string"});
+     body = {
+      "username": "andrea",
+      "message": "say something",
+      //"id": "gimme something random",
+      //"created_on": new Date,
+      //"updated_on": null
     }
 
+    newMessage(){
+      console.log("chatMessage.new: " + this.body)
 
+    }
 
 
 

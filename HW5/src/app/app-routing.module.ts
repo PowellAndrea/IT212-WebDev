@@ -6,9 +6,9 @@ import { ChatChannelComponent } from './chatChannel/chatChannel.component';
 
 const routes: Routes = [
   { path: 'messages/:id', component:ChatMessageComponent},
-  { path: 'channel/:id', component:ChatMessageComponent},
+  //{ path: 'channel/:id', component:ChatMessageComponent},
   { path: 'home', component:AppComponent},
-  { path: '*', component:AppComponent}
+  { path: '', component:AppComponent}
 
 
 ];
