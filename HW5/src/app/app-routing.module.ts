@@ -5,12 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChatChannelComponent } from './chatChannel/chatChannel.component';
 
 const routes: Routes = [
+  { path: 'channel/:id', component:ChatMessageComponent},
   { path: 'messages/:id', component:ChatMessageComponent},
-  //{ path: 'channel/:id', component:ChatMessageComponent},
   { path: 'home', component:AppComponent},
   { path: '', component:AppComponent}
-
-
 ];
 
 @NgModule({

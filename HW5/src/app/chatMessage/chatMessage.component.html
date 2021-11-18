@@ -1,9 +1,9 @@
-<div class="chatMessage">
-  <hr/>
-  Messages Here<br/><br/>
+<hr/>
+Messages Here<br/><br/>
+<button (click)="newMessage()"> New Message </button>
 
-  <button (click)="newMessage()"> New Message </button>
   <ul>
-    <li *ngFor="let message of messages"><pre>message: {{message | json}}</pre></li>
+    <li *ngFor="let message of messages">
+      <pre>message:{{message | json}}</pre>
+    </li>
   </ul>
-</div>
