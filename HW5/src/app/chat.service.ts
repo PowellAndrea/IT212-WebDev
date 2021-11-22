@@ -4,8 +4,9 @@ import { catchError, Observable, retry } from 'rxjs'
 @Injectable({  providedIn: 'root' })
 
 export class ChatService {
-  // currentChannel = new Observable()
+ // currentChannel = new Observable()
   // subclass observable.subject - can emit values
+
 
 constructor( private http: HttpClient){}
 
@@ -17,10 +18,9 @@ getChannels(){    // Get all channel names - returns an array of strings
 // Get all messages by channelName - returns an array of chat messages
 //  Need to fix this & pass in channel variable
 
-getMessages(channel: string ){
-  //channel = "apowell"
-  console.log("svcChat.getMessages ", channel)
-  return this.http.get("http://73.19.65.35:3500/api/channel/" + channel)
+getMessages(currentChannel: string){
+  console.log("svcChat.getMessages ", currentChannel)
+  return this.http.get("http://73.19.65.35:3500/api/channel/" + currentChannel)
 }
 
 newMessage(body: any){   //Create a new message in channelName - returns a single message (the created message)
@@ -34,7 +34,6 @@ newMessage(body: any){   //Create a new message in channelName - returns a singl
   console.log("svcChat.newMessages: " + body.toString())
   var message: any
   message =  this.http.post("http://73.19.65.35:3500/api/channel/apowell",body)
-  console.log(message)
 }
 
 updateChannel(){

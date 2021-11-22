@@ -1,5 +1,7 @@
+import { Observable } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
 import { ChatService } from './../chat.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { Component, Input, OnInit, Output } from '@angular/core';
 
 @Component({
@@ -10,37 +12,38 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 export class ChatMessageComponent implements OnInit {
 
   @Input()
+  messages: any;
+  currentChannel: string = "";
 
-  messages: any
-  channels: any
-  currentChannel: any
+  //@Output()
+  //currentChannel!: string;
+
   body: any
+  isloaded: boolean = false;
 
   constructor(
     private route:ActivatedRoute,
     private router: Router,
-    private chatSvc: ChatService)
-    {
-      // get params
+    private chatSvc: ChatService) {
+      this.chatSvc.getMessages(this.currentChannel).subscribe((data: any) => this.messages = data)
+    }
 
 // Needs to get notified when channel changes
-// do something with the current channel
-      //this.chatSvc.getChannels().subscribe(data=> this.currentChannel=data)
-      this.route.params.subscribe(data => {
-        this.currentChannel = data['id'];
-        console.log("ChatMessage.construtor", data['id']);
-        this.loadChannel();
-      })
-    }
-
-    loadChannel(){
-      this.chatSvc.getMessages(this.currentChannel).subscribe(data => this.messages = data)  // getChannels - returns array of strings
-
-    }
+// read router/param/ do something with the current channel
 
     ngOnInit() {
-      console.log(this.route.snapshot.paramMap.get('id'))
-    }
+      this.route.params.subscribe(params => {
+        console.log(params);
+      //})
+      //this.route.params.subscribe((item: any) => {
+      //  console.log(" in chatMessage onInit", item);
+      //  this.currentChannel = item;
+      //  this.isloaded = true;
+
+       //call function here for data change
+    });
+  }
+
 
     newMessage(){
       // body is currently hard-coded in service

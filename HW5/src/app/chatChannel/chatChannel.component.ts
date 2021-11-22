@@ -13,19 +13,15 @@ export class ChatChannelComponent implements OnInit {
 
   @Input()
     items:any
-  //  currentChannel:any
-  //  messages: any
-
-    ngOnInit() {
-      this.chatSvc.getChannels().subscribe(data => this.items = data)
-    }
 
   constructor(
-   private route:ActivatedRoute,
-   private router: Router,
-   private chatSvc:ChatService) {
+    private route:ActivatedRoute,
+    private router: Router,
+    private chatSvc:ChatService) {
+  } // end constructor
 
-    // date => console.log
-    }
+  ngOnInit() {
+      this.chatSvc.getChannels().subscribe(data => this.items = data)
+  }
 
 } // end class

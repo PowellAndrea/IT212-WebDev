@@ -2,8 +2,9 @@
 Messages Here<br/><br/>
 <button (click)="newMessage()"> New Message </button>
 
-  <ul>
+  <ul *ngIf = "isloaded" >
     <li *ngFor="let message of messages">
       <pre>message:{{message | json}}</pre>
     </li>
   </ul>
+
