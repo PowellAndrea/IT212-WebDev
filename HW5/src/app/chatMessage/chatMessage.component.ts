@@ -1,8 +1,8 @@
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { ChatService } from './../chat.service';
 import { Router, ActivatedRoute, ParamMap, Params } from '@angular/router';
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, Type } from '@angular/core';
 
 @Component({
   selector: 'app-chatMessage',
@@ -20,6 +20,7 @@ export class ChatMessageComponent implements OnInit {
 
   body: any
   isloaded: boolean = false;
+  isVisible: boolean = false;
 
   constructor(
     private route:ActivatedRoute,
@@ -28,25 +29,16 @@ export class ChatMessageComponent implements OnInit {
       this.chatSvc.getMessages(this.currentChannel).subscribe((data: any) => this.messages = data)
     }
 
-// Needs to get notified when channel changes
-// read router/param/ do something with the current channel
-
-    ngOnInit() {
-      this.route.params.subscribe(params => {
-        console.log(params);
-      //})
-      //this.route.params.subscribe((item: any) => {
-      //  console.log(" in chatMessage onInit", item);
-      //  this.currentChannel = item;
-      //  this.isloaded = true;
-
-       //call function here for data change
-    });
-  }
-
-
+ngOnInit() {
+  this.route.queryParams.subscribe(params => {
+    this.chatSvc.getMessages(params["item"]).subscribe((data: any) => this.messages = data);
+    this.isloaded = true;
+    console.log("after: ",typeof params["item"])
+    if ( typeof params["item"] == "undefined" ){ this.isVisible = false }else{this.isVisible = true};
+  });
+}
     newMessage(){
-      // body is currently hard-coded in service
+
       var guid = this.guidGenerator()
       var created_on = Date()
       this.body = {
@@ -56,8 +48,7 @@ export class ChatMessageComponent implements OnInit {
         "updated_on": "",
         "id": guid
       }
-      this.chatSvc.newMessage(this.body)
-      // need to add channel selector - currently hard coded in service
+      this.chatSvc.newMessage(this.currentChannel, this.body)
       console.log("chatMessage.new: " + this.body)
     }
 

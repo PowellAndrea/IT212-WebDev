@@ -1,6 +1,8 @@
+<div *ngIf="!isVisible">Choose Channel Above</div>
+<div *ngIf="isVisible">
 <hr/>
-Messages Here<br/><br/>
-<button (click)="newMessage()"> New Message </button>
+  Messages Here<br/><br/>
+  <button (click)="newMessage()"> New Message </button>
 
   <ul *ngIf = "isloaded" >
     <li *ngFor="let message of messages">
@@ -8,3 +10,4 @@ Messages Here<br/><br/>
     </li>
   </ul>
 
+</div>
