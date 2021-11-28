@@ -1,15 +1,17 @@
 import { EMPTY, Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
+
+
 import { ChatService } from './../chat.service';
 import { Router, ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { Component, Input, OnInit, Output, Type } from '@angular/core';
-import { FormControl, FormGroup, NgForm, NgModel, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-chatMessage',
   templateUrl: './chatMessage.component.html',
-  styleUrls: ['./chatMessage.component.scss']})
-
+  styleUrls: ['./chatMessage.component.scss']
+})
 
 export class ChatMessageComponent implements OnInit {
   @Input()
@@ -20,21 +22,14 @@ export class ChatMessageComponent implements OnInit {
   isVisible: boolean = false;
   isNew: boolean = true;
   update: boolean = false;
-
-  body = [
-    {
-      "username": "",
-      "message": "",
-      "id": this.guidGenerator(),
-      "created_on": Date.now(),
-      "updated_on": new Date()
-  }]
+  body!: any;
 
   constructor(
     private route:ActivatedRoute,
     private router: Router,
-    private chatSvc: ChatService) {
-      this.chatSvc.getMessages(this.currentChannel).subscribe((data: any) => this.messages = data)
+    private chatSvc: ChatService,)
+    {
+      this.chatSvc.getMessages(this.currentChannel).subscribe((data: any) => this.messages = data);
     }
 
   ngOnInit() {
@@ -42,7 +37,6 @@ export class ChatMessageComponent implements OnInit {
       this.chatSvc.getMessages(params["item"]).subscribe((data: any) => this.messages = data);
       this.isloaded = true;
       this.isNew = false;
-      //console.log("after: ",typeof params["item"])
       if ( typeof params["item"] == "undefined" ){ this.isVisible = false }else{this.isVisible = true};
     });
   }
@@ -52,10 +46,21 @@ export class ChatMessageComponent implements OnInit {
   }
 
 
-  onClickSubmit(){
+  onSubmit() {
+
+  //  this.body = {
+  //    "username": this.myForm.control.name,
+  //    "message": this.myForm.control,
+  //    "id": this.guidGenerator(),
+  //    "created_on": Date.now(),
+  //    "updated_on": new Date()
+  // }
+
     // Need to bind the form fields in the template to username, message and update
+    // hardcode channel for testing
     this.chatSvc.newMessage("apowell", this.body, this.update )
     this.isNew=false;
+
   }
 
 
