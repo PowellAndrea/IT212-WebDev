@@ -23,10 +23,11 @@ export class NewMessageComponent implements OnInit {
     var body ={
       "username": this.usernameCtrl.value,
       "message" : this.messageCtrl.value,
-      "id"      : this.guidGenerator(),
-      "created_on": 1638053205633,
-      "updated_on": null
+    //  "id"      : this.guidGenerator(),
+    //  "created_on": 1638053205633,
+    //  "updated_on": null
     }
+
     //var body = {
     //  "username": "Mary Poppins",
     //  "message": "Poppins Lives",

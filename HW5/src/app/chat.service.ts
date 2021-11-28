@@ -21,9 +21,9 @@ newMessage(currentChannel: string, body: object, update:boolean){
 //Create a new message in channelName - returns a single message (the created message)
 // I am hard-coding the currentChannel so I don't clobber something else
   if (update == false){
-    return(this.http.post("http://73.19.65.35:3500/api/channel/apowell",body))
+    return(this.http.post("http://73.19.65.35:3500/api/channel/apowell/",body))
   } else {
-    return (this.http.patch("http://73.19.65.35:3500/api/channel/apowell", body))
+    return (this.http.patch("http://73.19.65.35:3500/api/channel/apowell/", body))
   }
 }
 
