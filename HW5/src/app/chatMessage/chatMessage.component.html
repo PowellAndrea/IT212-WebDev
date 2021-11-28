@@ -1,21 +1,9 @@
-<hr>
+
 <div *ngIf="!isVisible">Click Channel Above To Load Messages</div>
 
 <div *ngIf="isVisible" >
   <hr/>
   Messages Here<br/><br/>
-  <button (click)="newMessage()" type="button"> New </button>
-
-  <div *ngIf="isNew">
-    <form>
-      Username: <input type="text" id="username" required><br/>
-      Message:  <input type="text" id="message" required>
-      Clear Channel?  <input type="checkbox" id="update"> (deletes old channel data)<br/><br/>
-
-      <button type="button" (click)="onSubmit()">Submit</button>
-  </form>
-
-  </div>
 
   <ul *ngIf = "isloaded" >
     <li *ngFor="let message of messages">

@@ -1,0 +1,16 @@
+<div>
+  <p>
+    newMessage Here
+  </p>
+
+  <label for="username">Username: </label>
+  <input id="username" type="text" [formControl]="usernameCtrl">
+  Entry: {{usernameCtrl.value}}
+  <br/>
+  <label for = "message">Message:</label>
+  <input id  = "message" type="text" [formControl]="messageCtrl">
+  Entry: {{messageCtrl.value}}
+  <br/><br/>
+  <button type="button"> Submit</button>
+  <label for = "update"> Update?</label>
+</div>
