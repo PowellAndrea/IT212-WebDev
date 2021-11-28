@@ -5,9 +5,7 @@ import { catchError, Observable, retry } from 'rxjs'
 
 export class ChatService {
 
-constructor( private http: HttpClient){
-
-}
+constructor( private http: HttpClient){ }
 
 getChannels(){    // Get all channel names - returns an array of strings
   console.log("svcChat.getChannels: ");
@@ -19,31 +17,14 @@ getMessages(currentChannel: string){
   return this.http.get("http://73.19.65.35:3500/api/channel/" + currentChannel)
 }
 
-newMessage(currentChannel: string, body: object){
+newMessage(currentChannel: string, body: object, update:boolean){
 //Create a new message in channelName - returns a single message (the created message)
-  return(this.http.post("http://73.19.65.35:3500/api/channel/apowell",body))
-}
-
-
-updateChannel(currentChannel: string){
-  // hardcode for safe testing
-  //currentChannel = "apowell";
-  //this.http.patch("http://73.19.65.35:3500/api/channel/apowell");
-  //this.deleteChannel(currentChannel);
-  //this.newMessage(currentChannel);
-  // Update Channel by channelName - returns the updated data
-  // note: this endpoint replaces the entire message history in a channel
-
-  //
-}
-
-deleteChannel(currentChannel: string){
-//  Hard coded with 'apowell' so I didn't inadvertantly delete anything else
-//  Delete Channel by channelName - returns a success message (note: this deletes everything in a channel)
-
-  currentChannel = "apowell";
-
-  return("I am a winner")
+// I am hard-coding the currentChannel so I don't clobber something else
+  if (update == false){
+    return(this.http.post("http://73.19.65.35:3500/api/channel/apowell",body))
+  } else {
+    return (this.http.patch("http://73.19.65.35:3500/api/channel/apowell", body))
+  }
 }
 
 }   // end class

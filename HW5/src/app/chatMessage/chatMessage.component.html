@@ -1,8 +1,19 @@
-<div *ngIf="!isVisible">Choose Channel Above</div>
-<div *ngIf="isVisible">
-<hr/>
+<hr>
+<div *ngIf="!isVisible">Click Channel Above To Load Messages</div>
+
+<div *ngIf="isVisible" >
+  <hr/>
   Messages Here<br/><br/>
-  <button (click)="newMessage()"> New Message </button>
+  <button (click)="newMessage()" class="newForm"> New Message in apowell</button>
+
+  <div *ngIf="isNew" class="newForm">
+    <form>
+      Username: (required) <input type="text" name="username" ng-model="username" required><br/>
+      Message: (required) <input type="text" name="message" ng-model="message" required><br/>
+      Clear Channel?  <input type="checkbox" ng-model="bool.update"> (deletes old channel data)<br/><br/>
+      <button (click)="onClickSubmit()" type="submit" value="submit">Submit</button>
+    </form>
+  </div>
 
   <ul *ngIf = "isloaded" >
     <li *ngFor="let message of messages">
@@ -11,3 +22,4 @@
   </ul>
 
 </div>
+
