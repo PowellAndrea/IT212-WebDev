@@ -1,6 +1,7 @@
 <div>
+  <hr/>
   <p>
-    newMessage Here
+    New Message Here
   </p>
 
   <label for="username">Username: </label>
@@ -11,6 +12,7 @@
   <input id  = "message" type="text" [formControl]="messageCtrl">
   Entry: {{messageCtrl.value}}
   <br/><br/>
-  <button type="button"> Submit</button>
+  <button type="button" (click)="onSubmit()"> Submit</button>
   <label for = "update"> Update?</label>
+  <input id = "update" type="checkbox" [formControl]="updateCtrl">
 </div>

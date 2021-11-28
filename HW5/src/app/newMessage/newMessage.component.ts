@@ -14,7 +14,7 @@ export class NewMessageComponent implements OnInit {
   messageCtrl = new FormControl('');
   updateCtrl = new FormControl('');
 
-  constructor(){}
+  constructor(private chatSvc: ChatService,){}
 
   ngOnInit() {
   }
@@ -24,12 +24,18 @@ export class NewMessageComponent implements OnInit {
       "username": this.usernameCtrl.value,
       "message" : this.messageCtrl.value,
       "id"      : this.guidGenerator(),
-      "created_on": Date.now(),
-      "updated_on": new Date()
+      "created_on": 1638053205633,
+      "updated_on": null
     }
-      // Need to bind the form fields in the template to username, message and update
+    //var body = {
+    //  "username": "Mary Poppins",
+    //  "message": "Poppins Lives",
+    //  "id": "6de41701-25c3-4139-bf47-3f7e475a7312",
+    //  "created_on": 1638053591221,
+    //  "updated_on": null
+    //}
       // hardcode channel for testing
-     //var newBody=this.chatSvc.newMessage("apowell", body, this.updateCtrl.value )
+     this.chatSvc.newMessage("apowell", body, this.updateCtrl.value )
   }
 
   guidGenerator() {
