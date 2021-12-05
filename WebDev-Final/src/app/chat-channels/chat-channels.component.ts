@@ -11,9 +11,6 @@ import { Subscriber, Observable, Subject, EMPTY } from 'rxjs';
 export class ChatChannels implements OnInit {
   channelList!: String[];
   currentChannel!: String;
-  isVisible = false;
-
-  currentChannel$: Subject<String> = new Subject<String>();
 
   y: any;
   constructor( private svcChat: SvcChatService) {
@@ -25,7 +22,6 @@ export class ChatChannels implements OnInit {
       this.channelList = data
     })
     this.svcChat.getChannels()
-
   }
 
   getMessages(i: number){

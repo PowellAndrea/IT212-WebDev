@@ -33,7 +33,6 @@ export class SvcChatService {
   getAllMessages(currentChannel: string){
     this.http.get("http://73.19.65.35:3500/api/channel/" + currentChannel).subscribe(data =>
     this.AllMessages$.next(data))
-    //this.CurrentChannel$ = currentChannel;
   }
 
   newMessage(currentChannel: string, body: object, update:boolean){

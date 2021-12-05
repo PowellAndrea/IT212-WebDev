@@ -22,10 +22,5 @@ export class ChatMessages implements OnInit {
     this.svcChat.AllMessages$.subscribe( data => {
       this.messageList = data;
     })
-
-    this.svcChat.CurrentChannel$.subscribe( data => {
-      this.currentChannel = data;
-    })
-
   }
 }

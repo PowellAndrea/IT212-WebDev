@@ -1,8 +1,11 @@
-.messages{
+.message_list{
+  background-color: rgb(183,183,164);
+  float: left;
+  width: fit-content;
+}
+
+.message{
+  padding-left: 20px;
   background-color: beige;
   width: 80%;
-  float: right;
-  border: 5px;
-  border-style: double;
-  border-color: black;
 }

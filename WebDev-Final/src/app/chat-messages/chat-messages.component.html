@@ -1,10 +1,13 @@
-<div class="messageList">
-  <h3>Messages</h3>
-  BubbleGum
-  <ul>
-    <li *ngFor="let item of messageList">
-      <pre>{{item}}</pre>
-    </li>
-  </ul>
+<div class="message_list" >
+  <H3>Messages</H3>
+    <app-msg-new></app-msg-new>
 
+
+    <div *ngFor="let item of messageList" class="message">
+      <p>{{item.username}}</p>
+      <p>{{item.message}}</p>
+      <p>{{item.id}}</p>
+      <p>{{item.created_on}}</p>
+      <p>{{item.updated_on}}</p>
+  </div>
 </div>
