@@ -2,7 +2,6 @@
   <h3>Select Channel</h3>
 
   <div *ngFor="let item of channelList; let i = index" (click) = "getMessages(i)">
-
     <a [routerLink]="['/channel', item]">{{item}}</a><br>
   </div>
 

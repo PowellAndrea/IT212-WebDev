@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ChatMessages implements OnInit {
   messageList: chatMessage[] = [];
   currentChannel!: String;
+  isNew: boolean = true;
 
   constructor(
     private svcChat: SvcChatService,)

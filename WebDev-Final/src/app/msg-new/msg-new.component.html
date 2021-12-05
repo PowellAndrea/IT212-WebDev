@@ -1,3 +1,14 @@
-<p>
-  msg-new works!
-</p>
+<div class="new_message">
+  <H3>New Message</H3>
+    <form [formGroup]="ctrlForm" (ngSubmit)="btnClicked()">
+
+      <label for="username">Username:</label>
+      <input id = "username" type="text" formControlName="ctrlUsername"/>
+      <br/>
+      <label for = "message">Message:</label>
+      <input id  = "message" type="text" formControlName="ctrlMessage"/>
+      <br/>
+      <input type="submit" [disabled]="!ctrlForm.valid">
+    </form>
+</div>
+

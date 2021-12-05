@@ -7,8 +7,8 @@ import { ChatMessages } from './chat-messages/chat-messages.component';
 export interface chatMessage {
   username: string,
   message:  string,
-  id:       string,
-  created_on: Date,
+  id:       string | undefined,
+  created_on: Date | undefined,
   updated_on: Date | undefined
 }
 
@@ -20,7 +20,6 @@ export class SvcChatService {
   // notifiers
   AllMessages$:   Subject<any> = new Subject<any>();
   ChannelList$:   Subject<any> = new Subject<any>();
-  CurrentChannel$:Subject<String> = new Subject<String>();
 
   constructor( private http: HttpClient){ }
 
@@ -35,14 +34,14 @@ export class SvcChatService {
     this.AllMessages$.next(data))
   }
 
-  newMessage(currentChannel: string, body: object, update:boolean){
+  newMessage(currentChannel: string, body: object, update?:boolean){
     //Create a new message in channelName - returns a single message (the created message)
-    // I am hard-coding the currentChannel so I don't clobber something else
-    currentChannel = "apowell";
-      if (update == false){
-        return(this.http.post("http://73.19.65.35:3500/api/channel/" + currentChannel, body))
+    // hardcode for safety
+    currentChannel="apowell"
+      if (update == true){
+        return(this.http.patch("http://73.19.65.35:3500/api/channel/" + currentChannel, body))
       } else {
-        return (this.http.patch("http://73.19.65.35:3500/api/channel/" + currentChannel, body))
+        return (this.http.post("http://73.19.65.35:3500/api/channel/" + currentChannel, body))
       }
     }
 

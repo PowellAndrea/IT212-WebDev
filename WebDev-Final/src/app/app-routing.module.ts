@@ -1,5 +1,5 @@
 import { ChatChannels } from './chat-channels/chat-channels.component';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChatMessages } from './chat-messages/chat-messages.component';
 
