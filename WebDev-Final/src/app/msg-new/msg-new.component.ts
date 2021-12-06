@@ -1,8 +1,8 @@
 
-import { ChatChannels } from './../chat-channels/chat-channels.component';
 import { SvcChatService, chatMessage } from './../svcChat.service';
-import { Component, OnInit } from '@angular/core';
-import { Form, FormControl, FormGroup, RequiredValidator, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
   selector: 'app-msg-new',
@@ -11,36 +11,48 @@ import { Form, FormControl, FormGroup, RequiredValidator, Validators } from '@an
 })
 
 export class MsgNew implements OnInit {
-  ctrlForm!: FormGroup;
-  ctrlUsername!: FormControl;
-  ctrlMessage!:  FormControl;
 
-  body!:  chatMessage;
-  channel!: string;
+  //@Input() body: chatMessage = {
+  body: chatMessage = {
+    username: "",
+    message: "",
+    id: "",
+    created_on: new Date(),
+    updated_on: undefined
+  };
+
+  myForm: FormGroup = this.fb.group({
+    username: [this.body.username, Validators.required],
+    message:  [this.body.message, Validators.required],
+  })
+
+
+
+  ngOnInit() { }
 
   constructor(
+    private fb: FormBuilder,
     private svrChat: SvcChatService,)
-    {
+    {      }
 
+  btnClicked(): void {
+    // this.svrChat.getCurrentChannel();
+    let body: chatMessage = {
+      username: this.myForm.value.username,
+      message:  this.myForm.value.message,
+      id: "",
+      created_on: new Date(),
+      updated_on: new Date(),
     }
+    this.svrChat.newMessage(body, true);
 
-  ngOnInit() {
-    this.ctrlForm = new FormGroup({
-      ctrlUsername: new FormControl('',Validators.required),
-      ctrlMessage:  new FormControl('',Validators.required),
-    }, Validators.required)
+    this.clearForm()
   }
 
-  btnClicked(){
-    console.log(this.ctrlForm.valid);
-
-    if (this.ctrlForm.valid){
-      this.body.username=this.ctrlUsername.value;
-      this.body.message = this.ctrlMessage.value;
-      this.channel = this.svrChat.getCurrentChannel();
-
-      this.svrChat.newMessage(this.channel, this.body, false);
-  }
-
+  clearForm(): void{
+    this.myForm.setValue({
+      username: "done",
+      message:  this.body.message,
+    })
   }
 }

@@ -1,14 +1,13 @@
 <div class="new_message">
   <H3>New Message</H3>
-    <form [formGroup]="ctrlForm" (ngSubmit)="btnClicked()">
+    <form [formGroup]="myForm" (submit)="btnClicked()">
 
       <label for="username">Username:</label>
-      <input id = "username" type="text" formControlName="ctrlUsername"/>
+      <input id = "username" type="text" formControlName="username"/>
       <br/>
       <label for = "message">Message:</label>
-      <input id  = "message" type="text" formControlName="ctrlMessage"/>
+      <input id  = "message" type="text" formControlName="message"/>
       <br/>
-      <input type="submit" [disabled]="!ctrlForm.valid">
+      <input type="submit" [disabled]="myForm.invalid">
     </form>
 </div>
-<p>Form Status: {{ctrlForm.status}}</p>

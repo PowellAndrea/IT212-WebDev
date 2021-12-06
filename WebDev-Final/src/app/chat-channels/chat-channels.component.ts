@@ -12,7 +12,7 @@ export class ChatChannels implements OnInit {
   channelList!: string[];
   currentChannel!: string;
 
-  CurrentChannel$:Subject<string> = new Subject<string>();
+  //CurrentChannel$:Subject<string> = new Subject<string>();
 
   constructor( private svcChat: SvcChatService)
   {   }
@@ -24,9 +24,9 @@ export class ChatChannels implements OnInit {
     this.svcChat.getChannels()
   }
 
-  getCurrent(){
-    return this.currentChannel;
-  }
+  //getCurrent(){
+  //  return this.currentChannel;
+  //}
 
   getMessages(i: number){
     this.currentChannel = this.channelList[i];
