@@ -1,7 +1,9 @@
 <div class="topBar">
   <p>Messages</p>
+  <button type="btnClicked()" >New Message</button>
 
-  <div class="btnNew">
-    <button type="submit" >New Message</button>
+  <div *ngIf="isNew">
+    <app-msg-new></app-msg-new>
   </div>
+
 </div>

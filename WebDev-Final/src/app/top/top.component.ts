@@ -5,11 +5,17 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './top.component.html',
   styleUrls: ['./top.component.scss']
 })
+
 export class TopComponent implements OnInit {
+  isNew = true;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  btnClicked(){
+    this.isNew = !this.isNew;
   }
 
 }

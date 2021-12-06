@@ -1,5 +1,6 @@
 import { SvcChatService } from './../svcChat.service';
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
   selector: 'app-chat-channels',
@@ -11,6 +12,8 @@ export class ChatChannels implements OnInit {
   channelList!: string[];
   currentChannel!: string;
 
+  CurrentChannel$:Subject<string> = new Subject<string>();
+
   constructor( private svcChat: SvcChatService)
   {   }
 
@@ -19,6 +22,10 @@ export class ChatChannels implements OnInit {
       this.channelList = data
     })
     this.svcChat.getChannels()
+  }
+
+  getCurrent(){
+    return this.currentChannel;
   }
 
   getMessages(i: number){

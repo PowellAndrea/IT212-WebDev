@@ -20,6 +20,9 @@ export class SvcChatService {
   // notifiers
   AllMessages$:   Subject<any> = new Subject<any>();
   ChannelList$:   Subject<any> = new Subject<any>();
+  CurrentChannel$:Subject<string> = new Subject<string>();
+
+  currentChannel!: string;
 
   constructor( private http: HttpClient){ }
 
@@ -32,6 +35,16 @@ export class SvcChatService {
   getAllMessages(currentChannel: string){
     this.http.get("http://73.19.65.35:3500/api/channel/" + currentChannel).subscribe(data =>
     this.AllMessages$.next(data))
+
+    this.currentChannel = currentChannel;
+    this.CurrentChannel$.subscribe(data =>{
+      this.getCurrentChannel();
+    })
+
+  }
+
+  getCurrentChannel(){
+    return this.currentChannel
   }
 
   newMessage(currentChannel: string, body: object, update?:boolean){
