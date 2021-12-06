@@ -9,22 +9,20 @@ import { AppComponent } from './app.component';
 import { MsgNew } from './msg-new/msg-new.component';
 import { ChatMessages } from './chat-messages/chat-messages.component';
 import { ChatChannels } from './chat-channels/chat-channels.component';
-import { TopComponent } from './top/top.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
       MsgNew,
       ChatMessages,
       ChatChannels,
-      TopComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule,
+    //FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

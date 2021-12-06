@@ -8,7 +8,7 @@
       <label for = "message">Message:</label>
       <input id  = "message" type="text" formControlName="ctrlMessage"/>
       <br/>
-      <input type="submit" [disabled]="ctrlForm.invalid">
+      <input type="submit" [disabled]="!ctrlForm.valid">
     </form>
 </div>
-
+<p>Form Status: {{ctrlForm.status}}</p>
