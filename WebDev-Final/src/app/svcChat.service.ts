@@ -40,16 +40,17 @@ export class SvcChatService {
     this.currentChannel = strChannel;
   }
 
-  newMessage(body: chatMessage, isNew: boolean){
-    if (!isNew){
-      this.http.post("http://73.19.65.35:3500/api/channel/" + this.currentChannel, body).subscribe(data =>
-      this.getAllMessages(this.currentChannel))
-      };
+  editMessage(body: chatMessage){
+    this.http.patch("http://73.19.65.35:3500/api/channel/" + this.currentChannel, body).subscribe(data =>{
+      return data
+    })
 
-    this.http.patch("http://73.19.65.35:3500/api/channel/" + this.currentChannel, body).subscribe(data =>
     this.getAllMessages(this.currentChannel)
-    )
-    console.log(body)
+  }
 
+  newMessage(body: chatMessage){
+    this.http.post("http://73.19.65.35:3500/api/channel/" + this.currentChannel, body).subscribe(data =>{
+    return data});
+    this.getAllMessages(this.currentChannel)
   }
 }

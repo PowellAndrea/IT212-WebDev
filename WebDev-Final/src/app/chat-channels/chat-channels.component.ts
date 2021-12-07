@@ -24,10 +24,6 @@ export class ChatChannels implements OnInit {
     this.svcChat.getChannels()
   }
 
-  //getCurrent(){
-  //  return this.currentChannel;
-  //}
-
   getMessages(i: number){
     this.currentChannel = this.channelList[i];
     this.svcChat.getAllMessages(this.currentChannel);

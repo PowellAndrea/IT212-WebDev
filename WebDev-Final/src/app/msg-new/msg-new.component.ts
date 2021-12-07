@@ -26,7 +26,7 @@ export class MsgNew implements OnInit {
     message:  [this.body.message, Validators.required],
   })
 
-
+  AllMessages$:   Subject<any> = new Subject<any>();
 
   ngOnInit() { }
 
@@ -44,14 +44,15 @@ export class MsgNew implements OnInit {
       created_on: new Date(),
       updated_on: new Date(),
     }
-    this.svrChat.newMessage(body, true);
+
+    this.svrChat.newMessage(body)
 
     this.clearForm()
   }
 
   clearForm(): void{
     this.myForm.setValue({
-      username: "done",
+      username: this.body.username,
       message:  this.body.message,
     })
   }
