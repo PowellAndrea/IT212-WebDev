@@ -53,4 +53,9 @@ export class SvcChatService {
     return data});
     this.getAllMessages(this.currentChannel)
   }
+
+  deleteChannel(strChannel: string){
+    this.http.delete("http://73.19.65.35:3500/api/channel/" + "strChannel");
+    this.getChannels();
+  }
 }

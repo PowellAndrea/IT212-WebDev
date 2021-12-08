@@ -16,8 +16,7 @@ export class ChatMessages implements OnInit {
 
   constructor(
     private svcChat: SvcChatService,)
-    {
-    }
+    {    }
 
   ngOnInit() {
     this.svcChat.AllMessages$.subscribe( data => {
